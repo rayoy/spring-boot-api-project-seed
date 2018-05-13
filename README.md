@@ -41,5 +41,10 @@ Spring Boot API Project Seed 是一个基于Spring Boot & MyBatis的种子项目
 - Fastjson（[查看官方中文文档](https://github.com/Alibaba/fastjson/wiki/%E9%A6%96%E9%A1%B5)）
 - 其他略
 
+## 常见问题解答
+- 为什么﻿intellij idea生成的代码文件不在module下面?
+- 是因为你的module Working directory 设置的是 project 的或其他。那么如何解决那？很简单，修改运行时配置`Working directory` 的值设置成 `$MODULE_DIR$` 即可
+
+
 ## License
 无，纯粹开源分享，感谢大家 [Star](https://github.com/lihengming/spring-boot-api-project-seed/stargazers) & [Fork](https://github.com/lihengming/spring-boot-api-project-seed/network/members) 的支持。

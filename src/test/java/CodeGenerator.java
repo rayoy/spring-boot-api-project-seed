@@ -20,11 +20,12 @@ public class CodeGenerator {
     //JDBC配置，请修改为你项目的实际配置
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/test";
     private static final String JDBC_USERNAME = "root";
-    private static final String JDBC_PASSWORD = "123456";
+    private static final String JDBC_PASSWORD = "";
     private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
     private static final String PROJECT_PATH = System.getProperty("user.dir");//项目在硬盘上的基础路径
-    private static final String TEMPLATE_FILE_PATH = PROJECT_PATH + "/src/test/resources/generator/template";//模板位置
+
+    private static final String TEMPLATE_FILE_PATH = "/generator/template";//模板位置
 
     private static final String JAVA_PATH = "/src/main/java"; //java文件路径
     private static final String RESOURCES_PATH = "/src/main/resources";//资源文件路径
@@ -37,7 +38,7 @@ public class CodeGenerator {
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
     public static void main(String[] args) {
-        genCode("输入表名");
+        genCode("user");
         //genCodeByCustomModelName("输入表名","输入自定义Model名称");
     }
 
@@ -192,7 +193,9 @@ public class CodeGenerator {
 
     private static freemarker.template.Configuration getConfiguration() throws IOException {
         freemarker.template.Configuration cfg = new freemarker.template.Configuration(freemarker.template.Configuration.VERSION_2_3_23);
-        cfg.setDirectoryForTemplateLoading(new File(TEMPLATE_FILE_PATH));
+        String classpath = CodeGenerator.class.getClassLoader().getResource("").getPath();
+        String templatePath = classpath + TEMPLATE_FILE_PATH;
+        cfg.setDirectoryForTemplateLoading(new File(templatePath));
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.IGNORE_HANDLER);
         return cfg;
